@@ -1,0 +1,13 @@
+{
+    "name": "tuneduniverse",
+    "author": "ewkt",
+    "version": "1.0.0",
+    "description": "Discord integration of Tuned Universe",
+    "main": "main.js",
+    "dependencies": {
+      "discord.js": "^14.16.2",
+      "node-fetch": "^3.2.10",
+      "node-html-parser": "^1.4.1",
+      "dotenv": "^10.0.0"
+    }
+  }
