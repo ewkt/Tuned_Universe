@@ -127,7 +127,7 @@ const parsePage = (page) => {
     return product;
 };
 
-const sendMessage = (product, interaction) => {
+const sendMessage = async (product, interaction) => {
     /*
     This function sends the product in a message back to the user in the channel.
     With a direct link to the page just scraped.
@@ -158,5 +158,5 @@ const sendMessage = (product, interaction) => {
     } else {
         interaction.channel.send({ embeds: [embed] });
     }
-    interaction.deleteReply();
+    await interaction.deleteReply();
 };
