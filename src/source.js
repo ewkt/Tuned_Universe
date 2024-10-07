@@ -14,7 +14,6 @@ export const triggerTN = async (interaction) => {
     console.log('Recherche:', options.getString('sku'));
 
     if (commandName === 'tn' && channelId === tnChannel) {
-
         await interaction.deferReply({ ephemeral: true });
         const query = options.getString('sku');
 
@@ -37,7 +36,8 @@ export const triggerTN = async (interaction) => {
             await interaction.editReply('Désolé, ' + query + ' n\'est pas un SKU valide. \n Un SKU valide est sous la forme 123456-123 ou XX1234-567');
         }
     } else {
-        await interaction.reply('Désolé, cette commande n\'est pas disponible dans ce channel.');
+        await interaction.deferReply({ ephemeral: true });
+        await interaction.editReply('Désolé, cette commande n\'est pas disponible dans ce channel.');
     }
 }
 
