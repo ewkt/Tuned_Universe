@@ -20,9 +20,9 @@ export const triggerTN = async (interaction) => {
 
     if (commandName === 'tn') {
         const query = options.getString('sku');
+        await interaction.deferReply({ ephemeral: true });
 
         if (regex10.test(query) || regex9.test(query)) {
-            await interaction.deferReply({ ephemeral: true });
 
             try {
                 const page = await fetchProduct(query);
