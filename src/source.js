@@ -13,14 +13,10 @@ export const triggerTN = async (interaction) => {
     const { commandName, options, channelId } = interaction;
     console.log('Recherche:', options.getString('sku'));
 
-    if (channelId !== tnChannel){
-        interaction.reply('Désolé, cette commande n\'est pas disponible dans ce channel.');
-        return;
-    };
+    if (commandName === 'tn' && channelId === tnChannel) {
 
-    if (commandName === 'tn') {
-        const query = options.getString('sku');
         await interaction.deferReply({ ephemeral: true });
+        const query = options.getString('sku');
 
         if (regex10.test(query) || regex9.test(query)) {
 
@@ -29,7 +25,8 @@ export const triggerTN = async (interaction) => {
 
                 if (page) {
                     const product = parsePage(page);
-                    sendMessage(product, interaction);
+                    await sendMessage(product, interaction);
+
                 } else {
                     await interaction.editReply("Désolé, soit ce SKU n'existe pas, soit il n'est pas enregistré sur TN Universe");
                 }
@@ -37,8 +34,10 @@ export const triggerTN = async (interaction) => {
                 await interaction.editReply('Erreur lors de la récupération des données du produit.');
             }
         } else {
-            await interaction.editReply('Désolé, SKU invalide');
+            await interaction.editReply('Désolé, ' + query + ' n\'est pas un SKU valide. \n Un SKU valide est sous la forme 123456-123 ou XX1234-567');
         }
+    } else {
+        await interaction.reply('Désolé, cette commande n\'est pas disponible dans ce channel.');
     }
 }
 
