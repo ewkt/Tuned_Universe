@@ -37,7 +37,7 @@ export const triggerTN = async (interaction) => {
         }
     } else {
         await interaction.deferReply({ ephemeral: true });
-        await interaction.editReply('Désolé, cette commande n\'est pas disponible dans ce channel.');
+        await interaction.editReply('Désolé, cette commande n\'est disponible que dans le channel tn-finder.');
     }
 }
 
