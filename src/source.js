@@ -11,9 +11,7 @@ export const triggerTN = async (interaction) => {
     */
 
     const { commandName, options, channelId } = interaction;
-    console.log('Command:', commandName);
-    console.log('Channel:', channelId);
-    console.log('Options:', options);
+    console.log('Recherche:', options.getString('sku'));
 
     if (channelId !== tnChannel){
         interaction.reply('Désolé, cette commande n\'est pas disponible dans ce channel.');
@@ -75,8 +73,6 @@ const fetchProduct = async (message) => {
             return null;
         }
 
-        console.log(url);
-
         const response = await fetch(url, {
             headers: {
                 "user-agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:130.0) Gecko/20100101 Firefox/130.0',
@@ -91,8 +87,6 @@ const fetchProduct = async (message) => {
         const data = await response.text();
         const root = parse(data);
         const mainContent = root.querySelector('main')?.innerHTML || null;
-
-        console.log('finished fetching');
 
         return mainContent;
 
